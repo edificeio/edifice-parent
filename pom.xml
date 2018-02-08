@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.opendigitaleducation</groupId>
+  <artifactId>parent</artifactId>
+  <version>1</version>
+  <packaging>pom</packaging>
+
+  <repositories>
+    <repository>
+      <id>ode</id>
+      <name>ODE Repository</name>
+      <url>https://maven.opendigitaleducation.com/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ode-snapshots</id>
+      <name>ODE Snapshots</name>
+      <url>https://maven.opendigitaleducation.com/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>ode-releases</id>
+      <name>ODE Releases</name>
+      <url>https://maven.opendigitaleducation.com/nexus/content/repositories/releases/</url>
+    </repository>
+  </distributionManagement>
+
+</project>
+
