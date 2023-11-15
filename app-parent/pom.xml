@@ -15,6 +15,14 @@
     <version>1.0</version>
     <packaging>pom</packaging>
 
+    <repositories>
+        <repository>
+            <id>ode</id>
+            <name>ODE Repository</name>
+            <url>https://maven.opendigitaleducation.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
