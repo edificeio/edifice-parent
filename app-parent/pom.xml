@@ -56,6 +56,7 @@
                               <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                               </transformer>
                             </transformers>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>fat</shadedClassifierName>
                             <filters>
