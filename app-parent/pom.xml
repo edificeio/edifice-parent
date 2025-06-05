@@ -7,13 +7,16 @@
     <parent>
         <groupId>io.edifice</groupId>
         <artifactId>edifice-parent</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>io.edifice</groupId>
     <artifactId>app-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <properties>
+        <shade.minimizeJar>true</shade.minimizeJar>
+    </properties>
 
     <repositories>
         <repository>
@@ -59,7 +62,7 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>fat</shadedClassifierName>
-                            <minimizeJar>true</minimizeJar>
+                            <minimizeJar>${shade.minimizeJar}</minimizeJar>
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
@@ -68,6 +71,18 @@
                                         <exclude>META-INF/*.DSA</exclude>
                                         <exclude>META-INF/*.RSA</exclude>
                                     </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>commons-logging:commons-logging</artifact>
+                                    <includes>
+                                        <include>**</include>
+                                    </includes>
+                                </filter>
+                                <filter>
+                                    <artifact>org.apache.xmlbeans:xmlbeans</artifact>
+                                    <includes>
+                                        <include>**</include>
+                                    </includes>
                                 </filter>
                             </filters>
                         </configuration>
