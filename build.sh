@@ -22,14 +22,20 @@ init() {
 
 clean () {
   docker-compose run --rm maven mvn $MVN_OPTS clean
+  docker-compose run --rm maven399 sh -c "cd api-parent && mvn $MVN_OPTS clean"
+  docker-compose run --rm maven399 sh -c "cd quarkus-parent && mvn $MVN_OPTS clean"
 }
 
 install () {
   docker-compose run --rm maven mvn $MVN_OPTS install -DskipTests
+  docker-compose run --rm maven399 sh -c "cd api-parent && mvn $MVN_OPTS install -DskipTests"
+  docker-compose run --rm maven399 sh -c "cd quarkus-parent && mvn $MVN_OPTS install -DskipTests"
 }
 
 test () {
   docker-compose run --rm maven mvn $MVN_OPTS test
+  docker-compose run --rm maven399 sh -c "cd api-parent && mvn $MVN_OPTS test"
+  docker-compose run --rm maven399 sh -c "cd quarkus-parent && mvn $MVN_OPTS test"
 }
 
 publish() {
@@ -41,6 +47,8 @@ publish() {
   esac
 
   docker-compose run --rm  maven mvn $MVN_OPTS -DrepositoryId=ode-$nexusRepository -DskipTests --settings /var/maven/.m2/settings.xml deploy
+  docker-compose run --rm maven399 sh -c "cd api-parent && mvn $MVN_OPTS -DrepositoryId=ode-$nexusRepository -DskipTests --settings /var/maven/.m2/settings.xml deploy"
+  docker-compose run --rm maven399 sh -c "cd quarkus-parent && mvn $MVN_OPTS -DrepositoryId=ode-$nexusRepository -DskipTests --settings /var/maven/.m2/settings.xml deploy"
 }
 
 for param in "$@"
