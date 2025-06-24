@@ -2,11 +2,6 @@
 
 MVN_OPTS="-Duser.home=/var/maven"
 
-if [ ! -e node_modules ]
-then
-  mkdir node_modules
-fi
-
 case `uname -s` in
   MINGW*)
     USER_UID=1000
