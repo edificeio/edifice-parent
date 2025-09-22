@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>app-parent</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -156,20 +156,38 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>2.15.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
+
+    <profiles>
+        <profile>
+            <id>scala</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>!scala</name>
+                    <value>false</value>
+                </property>
+            </activation>
+            <build>
+              <plugins>
+                  <plugin>
+                      <groupId>org.scala-tools</groupId>
+                      <artifactId>maven-scala-plugin</artifactId>
+                      <version>2.15.2</version>
+                      <executions>
+                          <execution>
+                              <goals>
+                                  <goal>compile</goal>
+                                  <goal>testCompile</goal>
+                              </goals>
+                          </execution>
+                      </executions>
+                  </plugin>
+              </plugins>
+            </build>
+
+        </profile>
+    </profiles>
 </project>
