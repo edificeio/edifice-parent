@@ -7,11 +7,11 @@
     <parent>
         <groupId>io.edifice</groupId>
         <artifactId>edifice-parent</artifactId>
-        <version>1.0.2</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>app-parent</artifactId>
-    <version>1.0.3</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -63,6 +63,19 @@
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>fat</shadedClassifierName>
                             <minimizeJar>${shade.minimizeJar}</minimizeJar>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>io.vertx:mod-mongo-persistor:*:fat</exclude>
+                                    <exclude>org.entcore:workspace:*:fat</exclude>
+                                    <exclude>org.entcore:test:*:fat</exclude>
+                                    <exclude>com.opendigitaleducation:explorer:*:fat</exclude>
+                                    <exclude>fr.wseduc:mod-zip:*:fat</exclude>
+                                    <exclude>fr.wseduc:mod-pdf-generator:*:fat</exclude>
+                                    <exclude>fr.wseduc:mod-image-resizer:*:fat</exclude>
+                                    <exclude>fr.wseduc:mod-postgresql:*:fat</exclude>
+                                    <exclude>com.opendigitaleducation:mod-json-schema-validator:*:fat</exclude>
+                                </excludes>
+                            </artifactSet>
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>
