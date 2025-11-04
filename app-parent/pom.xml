@@ -86,6 +86,12 @@
                                     </excludes>
                                 </filter>
                                 <filter>
+                                    <artifact>org.entcore:common</artifact>
+                                    <includes>
+                                        <include>**</include>
+                                    </includes>
+                                </filter>
+                                <filter>
                                     <artifact>commons-logging:commons-logging</artifact>
                                     <includes>
                                         <include>**</include>
