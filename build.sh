@@ -21,26 +21,30 @@ init() {
 }
 
 clean () {
-  docker-compose run --rm maven mvn $MVN_OPTS clean
+  docker compose run --rm maven mvn $MVN_OPTS clean
 }
 
 install () {
-  docker-compose run --rm maven mvn $MVN_OPTS install -DskipTests
+  docker compose run --rm maven mvn $MVN_OPTS install -DskipTests
+  docker compose run --rm maven21 sh -c "cd api-parent && mvn $MVN_OPTS install -DskipTests"
+  docker compose run --rm maven21 sh -c "cd quarkus-parent && mvn $MVN_OPTS install -DskipTests"
 }
 
 test () {
-  docker-compose run --rm maven mvn $MVN_OPTS test
+  docker compose run --rm maven mvn $MVN_OPTS test
 }
 
 publish() {
-  version=`docker-compose run --rm maven mvn $MVN_OPTS help:evaluate -Dexpression=project.version -q -DforceStdout`
+  version=`docker compose run --rm maven mvn $MVN_OPTS help:evaluate -Dexpression=project.version -q -DforceStdout`
   level=`echo $version | cut -d'-' -f3`
   case "$level" in
     *SNAPSHOT) export nexusRepository='snapshots' ;;
     *)         export nexusRepository='releases' ;;
   esac
 
-  docker-compose run --rm  maven mvn $MVN_OPTS -DrepositoryId=ode-$nexusRepository -DskipTests --settings /var/maven/.m2/settings.xml deploy
+  docker compose run --rm  maven mvn $MVN_OPTS -DrepositoryId=ode-$nexusRepository -DskipTests --settings /var/maven/.m2/settings.xml deploy
+  docker compose run --rm maven21 sh -c "cd api-parent && mvn $MVN_OPTS -DrepositoryId=ode-$nexusRepository -DskipTests --settings /var/maven/.m2/settings.xml deploy"
+  docker compose run --rm maven21 sh -c "cd quarkus-parent && mvn $MVN_OPTS -DrepositoryId=ode-$nexusRepository -DskipTests --settings /var/maven/.m2/settings.xml deploy"
 }
 
 for param in "$@"
