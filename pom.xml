@@ -4,7 +4,7 @@
 
   <groupId>io.edifice</groupId>
   <artifactId>edifice-parent</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1-zookeeper-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <scm>
