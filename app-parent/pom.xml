@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.edifice</groupId>
         <artifactId>edifice-parent</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1-zookeeper-SNAPSHOT</version>
     </parent>
 
     <artifactId>app-parent</artifactId>
@@ -49,6 +49,7 @@
                 <version>3.5.1</version>
                 <executions>
                     <execution>
+                        <id>shade-jar</id>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
@@ -163,6 +164,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
+                            <skip>${is.pom}</skip>
                             <outputDirectory>${basedir}/target/classes</outputDirectory>
                             <includeEmptyDirs>true</includeEmptyDirs>
                             <resources>
@@ -180,6 +182,55 @@
 
 
     <profiles>
+        <profile>
+            <id>pom-module</id>
+            <activation>
+                <file>
+                    <missing>src/main/java</missing>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>shade-jar</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>default-jar</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>create-test-jar</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>create-deployment-jar</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>scala</id>
             <activation>
