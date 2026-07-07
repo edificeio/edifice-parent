@@ -16,12 +16,13 @@
   <properties>
     <java.version>21</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
     <vertxVersion>4.5.5</vertxVersion>
     <jacksonDatabindVersion>2.15.2</jacksonDatabindVersion>
     <gatlingHighchartsVersion>2.3.1</gatlingHighchartsVersion>
     <mongo.version>4.8.1</mongo.version>
+    <nettyVersion>4.1.107.Final</nettyVersion>
   </properties>
 
   <modules>
@@ -60,8 +61,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven-compiler-plugin.version}</version>
         <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
+          <release>${java.version}</release>
         </configuration>
       </plugin>
       <plugin>
