@@ -62,6 +62,9 @@
         <version>${maven-compiler-plugin.version}</version>
         <configuration>
           <release>${java.version}</release>
+          <!-- Re-enable classpath annotation-processor discovery, disabled by default on JDK >= 23.
+               Restores generation of routes/securedaction JSON by ControllerAnnotationProcessor. -->
+          <proc>full</proc>
         </configuration>
       </plugin>
       <plugin>
